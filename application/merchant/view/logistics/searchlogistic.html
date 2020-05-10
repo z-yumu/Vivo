@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+     <title>PC端-物流轨迹查询结果页面嵌入</title>
+     <link rel="stylesheet" href="http://www.kdniao.com/OutDemo/KDNWidget/KDNWidget.css" />
+
+ </head>
+ <body>
+<input name="expNo" value="{$expNo}" id="expNo" type="hidden"/>
+<input name="expCode" value="{$expCode}" id="expCode" type="hidden"/>
+      <div id="demoID"></div>
+      <script src="http://www.kdniao.com/OutDemo/KDNWidget/KDNWidget.js"></script>
+      <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+      <script>
+          expno = $("#expNo").val();
+          expcode = $("#expCode").val();
+          window.onload = function () {
+              KDNWidget.run({
+                  serviceType: "B",
+                  expCode:expcode,
+                  expNo:expno,
+                  showType:"normal",
+                  container: "demoID"
+              })
+          }
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+   </body>
+</html>

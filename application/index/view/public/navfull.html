@@ -1,0 +1,37 @@
+<div id="nav" class="navfull">
+<div class="area clearfix">
+<div class="category-content" id="guide_2">
+	<div class="category">
+		<ul class="category-list" id="js_climit_li">
+		{volist name="category" id="vo"}
+			<li class="appliance js_toggle">
+				<div class="category-info">
+					<h3 class="category-name b-category-name"><a class="ml-22" title="{$vo.name}">{$vo.name}</a></h3>
+					<em>&gt;</em></div>
+				<div class="menu-item menu-in top">
+					<div class="area-in">
+						<div class="area-bg">
+							<div class="menu-srot">
+								<div class="sort-side">
+								{volist name="vo['child']" id="sub"}
+									<dl class="dl-sort">
+										<dt><a title="{$sub.name}" href="{:url('Search/productcategory',['se_category_id'=>$sub.id])}"><span title="{$sub.name}">{$sub.name}</span></a></dt>
+										{volist name=":categorysmall($sub['id'])" id="vo2"}
+										<dd><a title="{$vo2.name}" href="{:url('Search/productsmallcategory',['categorysmall_id'=>$vo2.id,'se_category_id'=>$sub.id])}"><span>{$vo2.name}</span></a></dd>
+										{/volist}
+										
+									</dl>
+								{/volist}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<b class="arrow"></b>	
+			</li>
+	    {/volist}
+		</ul>
+	</div>
+</div>
+</div>
+</div>

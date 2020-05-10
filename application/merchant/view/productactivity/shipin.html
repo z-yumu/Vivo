@@ -1,0 +1,130 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- A minimal Flowplayer setup to get you started -->
+  
+
+
+<!-- 
+include flowplayer JavaScript file that does  
+Flash embedding and provides the Flowplayer API.
+-->
+<script type="text/javascript" src="../flowplayer-3.2.12.min.js"></script>
+
+<!-- some minimal styling, can be removed -->
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<!-- page title -->
+<title>Minimal Flowplayer setup</title>
+
+
+</head><body>
+<div id="page">
+<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+<div id="player" style="display:block;width:520px;height:330px""> </div>
+
+<!-- this will install flowplayer inside previous A- tag. -->
+<script>
+flowplayer("player", "../flowplayer.commercial-3.2.16.swf",{
+logo: {                    //公司logo
+url: 'logo.jpg',
+top: 20,
+right: 5,
+opacity: 1.0, 
+ 
+// you can supply a relative size
+// (to make the logo larger in fullscreen)
+width: '10%',
+height: '10%',
+ 
+// if set to false, then the logo is also shown in non-fullscreen mode
+fullscreenOnly: false,
+ 
+// time to display logo (in seconds). 0 = show forever
+displayTime: 0,
+ 
+// if displayTime > 0 then this specifies the time it will take
+// for the logo to fade out. this happens internally by changing
+// the opacity property from its initial value to full
+// transparency.  value is given in milliseconds.
+ 
+// for commercial versions you can specify where the user is
+// redirected when the logo is clicked
+},
+clip:  {                    //播放属性
+   scaling: 'fit',
+bufferLength:5,
+        live:true,
+autoPlay: true,
+autoBuffering: true,
+url: '',       //视频地址，自己找
+
+},
+play:{                       //暂停图品
+url:'showme.png',
+width:35,
+height:30,
+},
+canvas: {
+backgroundGradient: 'none',
+},
+plugins: {
+controls: {                //视频控制栏
+url: '../flowplayer.controls-3.2.15.swf', 
+// display properties
+bottom:0,
+height:24,
+zIndex:1,
+backgroundColor: '#2d3e46',
+backgroundGradient: 'low',
+ 
+// controlbar-specific configuration
+fontColor: '#ffffff',
+timeFontColor: '#333333',
+
+ 
+// which buttons are visible and which are not?
+play:true,
+volume:false,
+mute:false,
+time:false,
+stop:false,
+fullscreen:true,
+ 
+// scrubber is a well-known nickname for the timeline/playhead
+// combination
+scrubber: true,
+tooltips: {
+buttons: true,
+fullscreen: 'Enter fullscreen mode',
+},
+},
+myContent: {                   //在播放器添加文字等信息
+url: '../flowplayer.content-3.2.8.swf',
+opacity:0.8,
+bottom:'10%',
+right: '25%',
+width: '30%',
+   height:'10%',
+border:'none',
+textAlign:'right',
+backgroundColor: 'transparent',
+                            backgroundGradient: 'none',
+border: 0,
+style: {
+'.title': {
+fontSize: 10,
+fontFamily: 'verdana,arial,helvetica',
+color:'#ffffff',
+}
+},
+html: '<p class="title">dasdasdas</p>',                           
+},
+},
+
+
+   });
+</script>
+</div>
+
+
+</body></html>

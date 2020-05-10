@@ -1,0 +1,1088 @@
+<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>UI Elements - Ace Admin</title>
+
+		<meta name="description" content="Common UI Features &amp; Elements" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/static/admin/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="/static/admin/assets/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/css/jquery.gritter.min.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/static/admin/assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/static/admin/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="/static/admin/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+		<style>
+			/* some elements used in demo only */
+			.spinner-preview {
+				width: 100px;
+				height: 100px;
+				text-align: center;
+				margin-top: 60px;
+			}
+			
+			.dropdown-preview {
+				margin: 0 5px;
+				display: inline-block;
+			}
+			.dropdown-preview  > .dropdown-menu {
+				display: block;
+				position: static;
+				margin-bottom: 5px;
+			}
+		</style>
+
+		<!-- ace settings handler -->
+		<script src="/static/admin/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+<div class="main-content">
+	<div class="main-content-inner">
+		<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="#">主页</a>
+				</li>
+
+				<li>
+					<a href="#">产品管理</a>
+				</li>
+				<li class="active">添加产品</li>
+			</ul><!-- /.breadcrumb -->
+		</div>
+
+		<div class="page-content">
+			<div class="ace-settings-container" id="ace-settings-container">
+				<div class="ace-settings-box clearfix" id="ace-settings-box">
+					<div class="pull-left width-50">
+						<div class="ace-settings-item">
+							<div class="pull-left">
+								<select id="skin-colorpicker" class="hide">
+									<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+								</select>
+							</div>
+							<span>&nbsp; Choose Skin</span>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+							<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+							<label class="lbl" for="ace-settings-add-container">
+								Inside
+								<b>.container</b>
+							</label>
+						</div>
+					</div><!-- /.pull-left -->
+
+					<div class="pull-left width-50">
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+							<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+							<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+						</div>
+
+						<div class="ace-settings-item">
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+							<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+						</div>
+					</div><!-- /.pull-left -->
+				</div><!-- /.ace-settings-box -->
+			</div><!-- /.ace-settings-container -->
+			<div class="page-header">
+				<h1>
+					当前类目
+					<small>
+						<i class="ace-icon fa fa-angle-double-right"></i>
+						{$bid|categoryname} —>{$sid|categoryname}
+					</small>	
+				</h1>
+			</div><!-- /.page-header -->
+				<!-- PAGE CONTENT BEGINS -->
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="tabbable">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class="active">
+								<a data-toggle="tab" href="#home">
+									<i class="green ace-icon fa fa-home bigger-120"></i>
+									基本信息
+								</a>
+							</li>
+
+							<li>
+								<a data-toggle="tab" href="#categoryattribute">
+									类目属性
+									<span class="badge badge-danger"></span>
+								</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#salesattribute">
+									销售属性
+									<span class="badge badge-danger"></span>
+								</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#picture">
+									缩略图
+									<span class="badge badge-danger"></span>
+								</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#extract">
+									物流信息
+									<span class="badge badge-danger"></span>
+								</a>
+							</li>
+		                    <li>
+								<a data-toggle="tab" href="#servicexinxi">
+									服务信息
+									<span class="badge badge-danger"></span>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active">
+								<form name="productform" action="{:url('Product/productsave')}" method="post" onsubmit="return checkproduct()" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>产品名称： </label>
+									<div class="col-sm-6">
+										<input name="name"  type="text" id="name" value="{$products.name}" placeholder="最多允许输入30个汉字"  onkeyup="myFunction()" class="col-xs-10 col-sm-11" maxlength="30"/>
+										<span class="help-inline col-xs-12 col-sm-7">
+										   剩余字数<span class="middle" id="changdu">0</span>/30
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>一口价 ：</label>
+
+									<div class="col-sm-9">
+										<input name="price" type="text" value="{$products.price}" id="price" placeholder="价格" oninput="inputnum(this)" class="col-xs-10 col-sm-3" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>产品详情 ：</label>
+									<div class="col-sm-9">
+										<!-- 加载编辑器的容器 -->
+									    <script id="container" name="content" type="text/plain">
+									    
+									    {:html_entity_decode(htmlspecialchars_decode($products.description))}
+									    </script>
+									    <!-- 配置文件 -->
+									    <script type="text/javascript" src="/static/admin/assets/bianjiqi/ueditor.config.js"></script>
+									    <!-- 编辑器源码文件 -->
+									    <script type="text/javascript" src="/static/admin/assets/bianjiqi/ueditor.all.js"></script>
+									    <!-- 实例化编辑器 -->
+									    <script type="text/javascript">
+									        var ue = UE.getEditor('container');
+									    </script>
+
+									</div>
+								</div> 
+								{:token()}
+								<input name="id" type="hidden" value="{$products.id}">					
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="ace-icon fa fa-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>  
+								</form>
+							</div>
+							<div id="categoryattribute" class="tab-pane fade">
+								<form name="form" action="{:url('product/categoryattributesave')}" method="post" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类目属性： </label>
+									<div class="col-sm-6">
+									    <div style="width:48%; float:left;margin:10px 0">
+									     <label class="col-sm-4 control-label no-padding-right" for="form-field-1">  品牌： </label>
+										<select name="categorybrand_id"  style="width:150px" id="">
+										    <option value="">请选择</option>
+						                 {volist name=":categorybrand($sid)" id="vo"}    
+						                    <option {in name="$vo.id" value="$brandid"}
+											selected {/in} value="{$vo.id}">{$vo.name}</option>
+						                {/volist}      
+							            </select>
+							            </div>
+						                {volist name=":categoryattribute($sid)" id="vo1"}
+						                 <div style="width:48%; float:left;margin:10px 0;">
+						                 <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> {$vo1.name}：</label>
+						                 <input name="categoryattribute_id[]" value="{$vo1.id}" type="hidden"/>
+							            <select name="categoryattributevalue_id[]"  style="width:150px" >
+							                <option value="">请选择</option>
+							                {volist name="vo1['child']" id="sub1"}  
+							                <option {in name="$sub1.id" value="$attributevalueid"}
+											selected {/in} value="{$sub1.id}">{$sub1.name}</option>  
+						                    {/volist} 
+							            </select>
+							            </div>  
+							            {/volist}      
+									</div>
+								</div>
+								{:token()}
+								<input name="id" type="hidden" value="{$products.id}">
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="ace-icon fa fa-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>
+								</form>
+							</div>
+		                    <div id="salesattribute" class="tab-pane fade">
+			                    <form name="formsales" action="{:url('product/salesattributesave')}" method="post" onsubmit="return checksales()" class="form-horizontal" role="form">
+			                     {volist name=":salesattribute($sid)" id="vo2" key="k"}
+						        <div class="div_contentlist"> 
+						        <div class="form-group">
+						             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">  
+						                <div class="Father_Title"> 
+							                <input name="salesattribute_id[]" type="hidden" value="{$vo2.sales_attribute_id}"> 
+						                    <aa>{$vo2.sales_attribute_id|salesattributename}</aa>:  
+						                </div>  
+						            </label>
+					                <div class="col-sm-6">
+						                <div class="Father_Item{$k-1}">  
+						                   {volist name="vo2['child']" id="vo3"}
+							                <div style="width:20%; float:left;margin:0px 0;">
+										        <div class="checkbox">
+													<label>
+														<input name="salesattributevalue[]" value="{$vo3.name}" type="checkbox"  {in name="$vo3.id" value="$salesattributevalueid"}
+											checked {/in} class="ace" id="salesattribute"/>
+														<span class="lbl">{$vo3.name}</span>
+													</label>    
+								                </div> 
+							                </div>   
+					                        {/volist} 
+					                    </div> 
+							        </div>
+			                    </div>
+			                    </div>
+				                {/volist}
+								 <div class="form-group">
+						           <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+						            <div class="col-sm-6">
+						                 <div id="createTable"> 
+						                 
+						                 </div>  
+						            </div> 
+						         </div> 
+						         <div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>总数量 ：</label>
+
+									<div class="col-sm-9">
+						                <div id="total">
+										<input name="total" type="text" id="total" value="{$products.total_count}" placeholder="数量" class="col-xs-10 col-sm-3" onkeyup="this.value=this.value.replace(/\D/g,'')" />
+						                 </div>
+									</div>
+								</div>
+						         {:token()}
+								<input name="id" type="hidden" value="{$products.id}">
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="ace-icon fa fa-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>
+		                        </form>
+		                    </div>
+							<div id="picture" class="tab-pane fade">
+							    <form name="formpicture" action="{:url('product/picturesave')}" method="post" onsubmit="return checkpicture()" class="form-horizontal" role="form">
+								<div class="form-group">
+							        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>产品缩略图： </label>
+						            <div class="col-xs-2">
+						                <label class="ace-file-input ace-file-multiple"><input type="file" class="file" name="image" id="file"><span class="ace-file-container" data-title="上传"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-cloud-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times">上传</i></a></label>
+						            </div>
+						        </div>
+						        <div class="form-group">
+							        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+						            <div class="col-xs-9">
+							            <div id="content">
+                                             {volist name="pictures" id="vo4"}
+	                                         <div class="col-xs-2">
+		                                         <label class="ace-file-input ace-file-multiple">
+		                                         <img src="{$vo4.picturebig}" width="120" height="120">
+
+		                                         </label>
+
+		                                         <input name="Fruit" type="radio" value="{$vo4.picturebig}" {eq name="vo4.pictureindex" value="1"}
+												checked
+												{/eq} />设为主图
+		                                         &nbsp;&nbsp;
+                                         <a href="javascript:void(0)" onclick="deletepicture('{$vo4.id}')">删除</a>
+	                                         </div>
+                                             {/volist}
+							            </div>  
+						            </div>
+						        </div>
+						         {volist name="pictures" id="vo4"}
+						        <div id="picturebig"><input name="picturebig[]" type="hidden" value="{$vo4.picturebig}" id="picturebigtu"></div>
+						        <div id="picturesmall"><input name="picturesmall[]" type="hidden" value="{$vo4.picturesmall}" id="picture"></div>
+						        <div id="picturefang"><input name="picturefang[]" type="hidden" value="{$vo4.picturefang}" id="picture"></div>
+						         {/volist}
+						         {:token()}
+								<input name="id" type="hidden" value="{$products.id}">
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="ace-icon fa fa-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>
+								</form>
+							</div>
+							<div id="extract" class="tab-pane fade">
+							    <form name="formextract" action="{:url('product/extractsave')}" method="post" onsubmit="return checkextract()" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>产品地区 ：</label>
+									<div class="col-sm-9">
+							            <!--省份选择-->
+							            <input type="hidden" value="{$addresss.province}" id="provid">
+							            <select name="province" id="prov" onchange="showCity(this)">
+							                <option value="">=请选择省份=</option>
+							            </select>
+							            <!--城市选择-->
+							            <select name="city" id="city" onchange="showCountry(this)">
+							                <option value="">=请选择城市=</option>
+							            </select>
+							             <input type="hidden" value="{$addresss.city}" id="cityid">
+							            <!--县区选择-->
+							            <select name="country" id="country">
+							                <option value="">=请选择县区=</option>
+							            </select> 
+							             <input type="hidden" value="{$addresss.country}" id="countryid">
+					                </div>	
+				                </div>
+						        <div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>提取方式 ：</label>
+									<div class="col-sm-7">
+									    <div style="width:20%; float:left;margin:0px 0;">
+											<div class="radio">
+												<label>
+													<input name="extract" {eq name="extracts.extract" value="1"}
+												checked
+												{/eq} value="1" type="radio" class="ace" id="" checked/>
+													<span class="lbl"> 物流配送</span>
+												</label>
+											</div>
+									    </div>
+									    <div style="width:20%; float:left;margin:0px 0;">
+											<div class="radio">
+												<label>
+													<input name="extract" name="extract" {eq name="extracts.extract" value="0"}
+												checked
+												{/eq} value="0" type="radio" class="ace" id="" />
+													<span class="lbl"> 上门取货</span>
+												</label>
+											</div>
+									    </div>	
+								    </div>
+								</div>
+						        <div class="form-group">
+						           <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>是否包邮 ：</label>
+						           <div class="col-sm-7">
+						                <div style="width:20%; float:left;margin:0px 0;">
+						                    <div class="radio">
+							                    <label>
+							                    <input name="transportfree" {eq name="extracts.transportfree" value="0"}
+												checked
+												{/eq} value="0" type="radio" class="ace" id="no" />
+							                    <span class="lbl"> 定义运费</span>
+							                    </label>
+						                    </div>
+						                </div>
+					                    <div style="width:20%; float:left;margin:0px 0;">
+						                    <div class="radio">
+							                    <label>
+							                    <input name="transportfree" {eq name="extracts.transportfree" value="1"}
+												checked
+												{/eq} value="1" type="radio" class="ace" id="yes"/>
+							                    <span class="lbl"> 包邮</span>
+							                    </label>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="form-group">
+						            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="#F00">*</font>运费 ：
+						            </label>
+						            <div class="col-sm-9">
+							            <div id="yunfei">
+							               <input name="fare" oninput="inputnum(this)" type="text" id="fare" placeholder="0" class="col-xs-10 col-sm-3"/>
+							            </div>
+						            </div>
+						        </div>    
+						         {:token()}
+								<input name="id" type="hidden" value="{$products.id}">
+								<div class="clearfix form-actions">
+									<div class="col-md-offset-3 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="ace-icon fa fa-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</div>
+								</form>  
+							</div>
+							<div id="servicexinxi" class="tab-pane fade">
+							    <form name="formservice" action="{:url('product/servicesave')}" method="post" onsubmit="return check()" class="form-horizontal" role="form">
+                                <div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 售后服务 ：</label>
+					                <div class="col-sm-9">
+										<div class="checkbox">
+											<label>
+												<input name="service[]" name="extract" {in name="1" value="$services"}
+											checked {/in} value="1" type="checkbox" class="ace" />
+												<span class="lbl"> 提供发票</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input name="service[]" {in name="2" value="$services"}
+											checked {/in} value="2" type="checkbox" class="ace" />
+												<span class="lbl"> 保修服务</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input name="service[]" {in name="3" value="$services"}
+											checked {/in} value="3" type="checkbox" class="ace" />
+												<span class="lbl"> 退换货承诺</span>
+											</label>
+										</div>
+										   {:token()}
+										<input name="id" type="hidden" value="{$products.id}">
+										<div class="clearfix form-actions">
+											<div class="col-md-offset-3 col-md-9">
+												<button class="btn btn-info" type="submit">
+													<i class="ace-icon fa fa-check bigger-110"></i>
+													提交
+												</button>
+
+												&nbsp; &nbsp; &nbsp;
+												<button class="btn" type="reset">
+													<i class="ace-icon fa fa-undo bigger-110"></i>
+													重置
+												</button>
+											</div>
+										</div>
+					                </div>
+							    </div>  
+							    </form> 
+							</div><!--服务结束 -->
+						</div><!-- tab-content -->
+					</div><!-- tabbable -->
+				</div><!-- /.col --><!-- col-sm-12 -->
+			</div><!-- /.row -->
+			<!-- PAGE CONTENT ENDS -->
+		</div><!-- /.page-content -->
+	</div><!-- main-content-inner -->
+</div><!-- /.main-content -->
+
+<script src="/static/admin/assets/liandong/city.js"></script>
+<script src="/static/admin/assets/liandong/method012.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="/static/admin/assets/liandong/table.js"></script>
+<!-- 缩略图 -->
+<!-- 物流 -->
+<script type="text/javascript">
+$('#yes').change(function(){
+        var html='<input name="fare" type="text" id="companylicense" placeholder="0" class="col-xs-10 col-sm-3" readonly />';
+        $('#yunfei').html(html);  
+ });
+$('#no').change(function(){
+        var html='<input name="fare" type="text" id="companylicense" placeholder="0" class="col-xs-10 col-sm-3"/>';
+        $('#yunfei').html(html);  
+ });
+</script>
+
+<script type="text/javascript">
+num2=0;
+$("input[name='Fruit']").each(function(){
+ num2++;
+});
+$('#file').change(function(){
+     num2++; 
+     if(num2<6){
+     ajaxPost(); 
+     }else{
+      alert("最多传5张图片");
+    }
+ });
+function ajaxPost(){
+  var formData=new FormData();
+  if($('#file')[0].files.length<=0){
+    alert("请选择文件");
+    return;
+   }
+   formData.append('image',$('#file')[0].files[0]);
+   $.ajax({
+     type:'post',
+     url:"{:url('Product/picture')}",
+     data:formData,
+     cache:false,
+     processData:false,
+     contentType:false,
+     success:function(data){
+       var html='<div class="col-xs-2"><label class="ace-file-input ace-file-multiple"><img src="'+data.srcbig+'" width="120" height="120"></label><input name="Fruit" type="radio" value="'+data.srcbig+'" checked/>设为主图</div>';
+       var picturebig=' <input name="picturebig[]" type="hidden" value="'+data.srcbig+'" id="picturebigtu">';
+       var picturesmall=' <input name="picturesmall[]" type="hidden" value="'+data.srcsmall+'" id="picture">';
+       var picturefang=' <input name="picturefang[]" type="hidden" value="'+data.srcfang+'" id="picture">';
+        $('#content').append(html);
+        $('#picturebig').append(picturebig);
+        $('#picturesmall').append(picturesmall);
+        $('#picturefang').append(picturefang);
+     }
+   })
+}
+</script>
+<script>
+function deletepicture(str){
+	var postData={
+	      'id':str,
+	     };
+	var url="{:url('Product/deletepicture')}";
+	$.post(url,postData,function(result){
+      if(result==1){
+      	 window.location.reload()  
+      }else{
+      	return false;
+      }
+	})
+}
+
+</script>
+
+<!-- 基本信息 -->
+<script type="text/javascript">
+//显示产品名称剩余字数 
+function myFunction(){
+	var x=document.getElementById("name").value;
+	a=30-x.length;
+    $('#changdu').html(a);
+}  
+//显示产品价格只能是两位小数的数字
+function inputnum(obj,val){
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,""); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+</script>
+
+<!-- 数量 -->
+<script type="text/javascript">
+function showsum(obj,val) {
+obj.value = obj.value.replace(/\D/g,''); //	
+var sum = 0;
+$(".inittextValue").each(function() {
+    var num = $(this).val();
+    if (num == "" || num == null) {
+        num = 0;
+    }
+    sum += parseFloat(num); 
+   $("input[name='total']").val(sum);
+  });
+}
+</script>
+<SCRIPT language="JavaScript">  
+function checkproduct(){
+	if(document.productform.name.value==""){  
+         alert("产品名称不能为空"); 
+         $('#name').focus();
+        return false;  
+    } 
+    if(document.productform.price.value==""){  
+         alert("一口价不能为空"); 
+         $('#price').focus();
+        return false;  
+    } 
+    var content = ue.getContent();
+	if(content == ''){
+	   alert('内容不能为空...');
+	   ue.focus();  
+	   return false;
+	}
+    return true;  
+} 
+</SCRIPT>
+<SCRIPT language="JavaScript">  
+function checksales(){
+	if("salesattributevalue[]" in document.formsales) 
+	{ 
+       //销售属性存在
+       if("prices[]" in document.formsales){
+        	//价格存在
+         }else{
+         	var id = document.getElementsByName('salesattributevalue[]');
+		    var value = new Array();
+		    for(var i = 0; i < id.length; i++){
+		         if(id[i].checked)
+		         value.push(id[i].value);
+		    } 
+		    if(value==""){
+		    //没有选择销售属性
+		    }else{
+		    	alert("销售属性请全选或者全不选（如销售属性有颜色、尺码，那么必须两样都勾选填写或者全部不勾选，不能只勾选其中一项）");
+                document.getElementById("salesattribute").focus();
+                 return false; 
+		    }
+         }
+	}
+	if(document.formsales.total.value==""){  
+         alert("产品数量不能为空"); 
+         $('#total').focus();
+        return false;  
+    } 
+    return true;  
+} 
+</SCRIPT>
+<SCRIPT language="JavaScript">  
+function checkpicture(){
+	if("picturebig[]" in document.formpicture) 
+	{ 
+		//存在
+	}else{ 
+        alert("产品缩略图必须上传"); 
+        document.getElementById("file").focus();
+        return false; 
+	} 
+    return true;  
+} 
+</SCRIPT>
+<SCRIPT language="JavaScript">  
+function checkextract(){
+	
+    if(document.formextract.province.value==""){  
+         alert("产品省份不能为空"); 
+         $('#prov').focus();
+        return false;  
+    } 
+    if(document.formextract.city.value==""){  
+         alert("产品城市不能为空"); 
+         $('#city').focus();
+        return false;  
+    }  
+    if(document.formextract.country.value==""){  
+         alert("产品区县不能为空"); 
+         $('#country').focus();
+        return false;  
+    } 
+    if(document.formextract.fare.value==""){  
+         alert("运费不能为空"); 
+         $('#fare').focus();
+        return false;  
+    } 
+    return true;  
+} 
+</SCRIPT>
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="/static/admin/assets/js/jquery-2.1.4.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/static/admin/assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="/static/admin/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="/static/admin/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/static/admin/assets/js/bootbox.js"></script>
+		<script src="/static/admin/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="/static/admin/assets/js/jquery.gritter.min.js"></script>
+		<script src="/static/admin/assets/js/spin.js"></script>
+
+		<!-- ace scripts -->
+		<script src="/static/admin/assets/js/ace-elements.min.js"></script>
+		<script src="/static/admin/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+				/**
+				$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+				  //console.log(e.target.getAttribute("href"));
+				})
+					
+				$('#accordion').on('shown.bs.collapse', function (e) {
+					//console.log($(e.target).is('#collapseTwo'))
+				});
+				*/
+				
+				$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+					//if($(e.target).attr('href') == "#home") doSomethingNow();
+				})
+			
+				
+				/**
+					//go to next tab, without user clicking
+					$('#myTab > .active').next().find('> a').trigger('click');
+				*/
+			
+			
+				$('#accordion-style').on('click', function(ev){
+					var target = $('input', ev.target);
+					var which = parseInt(target.val());
+					if(which == 2) $('#accordion').addClass('accordion-style2');
+					 else $('#accordion').removeClass('accordion-style2');
+				});
+				
+				//$('[href="#collapseTwo"]').trigger('click');
+			
+			
+				$('.easy-pie-chart.percentage').each(function(){
+					$(this).easyPieChart({
+						barColor: $(this).data('color'),
+						trackColor: '#EEEEEE',
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: 8,
+						animate: ace.vars['old_ie'] ? false : 1000,
+						size:75
+					}).css('color', $(this).data('color'));
+				});
+			
+				$('[data-rel=tooltip]').tooltip();
+				$('[data-rel=popover]').popover({html:true});
+			
+			
+				$('#gritter-regular').on(ace.click_event, function(){
+					$.gritter.add({
+						title: 'This is a regular notice!',
+						text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="blue">magnis dis parturient</a> montes, nascetur ridiculus mus.',
+						image: 'assets/images/avatars/avatar1.png', //in Ace demo ./dist will be replaced by correct assets path
+						sticky: false,
+						time: '',
+						class_name: (!$('#gritter-light').get(0).checked ? 'gritter-light' : '')
+					});
+			
+					return false;
+				});
+			
+				$('#gritter-sticky').on(ace.click_event, function(){
+					var unique_id = $.gritter.add({
+						title: 'This is a sticky notice!',
+						text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="red">magnis dis parturient</a> montes, nascetur ridiculus mus.',
+						image: 'assets/images/avatars/avatar.png',
+						sticky: true,
+						time: '',
+						class_name: 'gritter-info' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+					});
+			
+					return false;
+				});
+			
+			
+				$('#gritter-without-image').on(ace.click_event, function(){
+					$.gritter.add({
+						// (string | mandatory) the heading of the notification
+						title: 'This is a notice without an image!',
+						// (string | mandatory) the text inside the notification
+						text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="orange">magnis dis parturient</a> montes, nascetur ridiculus mus.',
+						class_name: 'gritter-success' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+					});
+			
+					return false;
+				});
+			
+			
+				$('#gritter-max3').on(ace.click_event, function(){
+					$.gritter.add({
+						title: 'This is a notice with a max of 3 on screen at one time!',
+						text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="green">magnis dis parturient</a> montes, nascetur ridiculus mus.',
+						image: 'assets/images/avatars/avatar3.png', //in Ace demo ./dist will be replaced by correct assets path
+						sticky: false,
+						before_open: function(){
+							if($('.gritter-item-wrapper').length >= 3)
+							{
+								return false;
+							}
+						},
+						class_name: 'gritter-warning' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+					});
+			
+					return false;
+				});
+			
+			
+				$('#gritter-center').on(ace.click_event, function(){
+					$.gritter.add({
+						title: 'This is a centered notification',
+						text: 'Just add a "gritter-center" class_name to your $.gritter.add or globally to $.gritter.options.class_name',
+						class_name: 'gritter-info gritter-center' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+					});
+			
+					return false;
+				});
+				
+				$('#gritter-error').on(ace.click_event, function(){
+					$.gritter.add({
+						title: 'This is a warning notification',
+						text: 'Just add a "gritter-light" class_name to your $.gritter.add or globally to $.gritter.options.class_name',
+						class_name: 'gritter-error' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+					});
+			
+					return false;
+				});
+					
+			
+				$("#gritter-remove").on(ace.click_event, function(){
+					$.gritter.removeAll();
+					return false;
+				});
+					
+			
+				///////
+			
+			
+				$("#bootbox-regular").on(ace.click_event, function() {
+					bootbox.prompt("What is your name?", function(result) {
+						if (result === null) {
+							
+						} else {
+							
+						}
+					});
+				});
+					
+				$("#bootbox-confirm").on(ace.click_event, function() {
+					bootbox.confirm("Are you sure?", function(result) {
+						if(result) {
+							//
+						}
+					});
+				});
+				
+			/**
+				$("#bootbox-confirm").on(ace.click_event, function() {
+					bootbox.confirm({
+						message: "Are you sure?",
+						buttons: {
+						  confirm: {
+							 label: "OK",
+							 className: "btn-primary btn-sm",
+						  },
+						  cancel: {
+							 label: "Cancel",
+							 className: "btn-sm",
+						  }
+						},
+						callback: function(result) {
+							if(result) alert(1)
+						}
+					  }
+					);
+				});
+			**/
+				
+			
+				$("#bootbox-options").on(ace.click_event, function() {
+					bootbox.dialog({
+						message: "<span class='bigger-110'>I am a custom dialog with smaller buttons</span>",
+						buttons:
+						{
+							"success" :
+							 {
+								"label" : "<i class='ace-icon fa fa-check'></i> Success!",
+								"className" : "btn-sm btn-success",
+								"callback": function() {
+									//Example.show("great success");
+								}
+							},
+							"danger" :
+							{
+								"label" : "Danger!",
+								"className" : "btn-sm btn-danger",
+								"callback": function() {
+									//Example.show("uh oh, look out!");
+								}
+							}, 
+							"click" :
+							{
+								"label" : "Click ME!",
+								"className" : "btn-sm btn-primary",
+								"callback": function() {
+									//Example.show("Primary button");
+								}
+							}, 
+							"button" :
+							{
+								"label" : "Just a button...",
+								"className" : "btn-sm"
+							}
+						}
+					});
+				});
+			
+			
+			
+				$('#spinner-opts small').css({display:'inline-block', width:'60px'})
+			
+				var slide_styles = ['', 'green','red','purple','orange', 'dark'];
+				var ii = 0;
+				$("#spinner-opts input[type=text]").each(function() {
+					var $this = $(this);
+					$this.hide().after('<span />');
+					$this.next().addClass('ui-slider-small').
+					addClass("inline ui-slider-"+slide_styles[ii++ % slide_styles.length]).
+					css('width','125px').slider({
+						value:parseInt($this.val()),
+						range: "min",
+						animate:true,
+						min: parseInt($this.attr('data-min')),
+						max: parseInt($this.attr('data-max')),
+						step: parseFloat($this.attr('data-step')) || 1,
+						slide: function( event, ui ) {
+							$this.val(ui.value);
+							spinner_update();
+						}
+					});
+				});
+			
+			
+			
+				//CSS3 spinner
+				$.fn.spin = function(opts) {
+					this.each(function() {
+					  var $this = $(this),
+						  data = $this.data();
+			
+					  if (data.spinner) {
+						data.spinner.stop();
+						delete data.spinner;
+					  }
+					  if (opts !== false) {
+						data.spinner = new Spinner($.extend({color: $this.css('color')}, opts)).spin(this);
+					  }
+					});
+					return this;
+				};
+			
+				function spinner_update() {
+					var opts = {};
+					$('#spinner-opts input[type=text]').each(function() {
+						opts[this.name] = parseFloat(this.value);
+					});
+					opts['left'] = 'auto';
+					$('#spinner-preview').spin(opts);
+				}
+			
+			
+			
+				$('#id-pills-stacked').removeAttr('checked').on('click', function(){
+					$('.nav-pills').toggleClass('nav-stacked');
+				});
+			
+				
+				
+				
+				
+				
+				///////////
+				$(document).one('ajaxloadstart.page', function(e) {
+					$.gritter.removeAll();
+					$('.modal').modal('hide');
+				});
+			
+			});
+		</script>

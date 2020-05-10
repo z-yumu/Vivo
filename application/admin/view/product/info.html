@@ -1,0 +1,321 @@
+{include file="public/header" /}
+<div class="main-content">
+<div class="main-content-inner">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+<ul class="breadcrumb">
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="#">主页</a>
+	</li>
+
+	<li>
+		<a href="#">系统管理员</a>
+	</li>
+	<li class="active">修改密码</li>
+</ul><!-- /.breadcrumb -->
+
+<div class="nav-search" id="nav-search">
+	<form class="form-search">
+		<span class="input-icon">
+			<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+			<i class="ace-icon fa fa-search nav-search-icon"></i>
+		</span>
+	</form>
+</div><!-- /.nav-search -->
+</div>
+
+<div class="page-content">
+<div class="ace-settings-container" id="ace-settings-container">
+	
+
+	<div class="ace-settings-box clearfix" id="ace-settings-box">
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<div class="pull-left">
+					<select id="skin-colorpicker" class="hide">
+						<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+						<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+						<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+						<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+					</select>
+				</div>
+				<span>&nbsp; Choose Skin</span>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+				<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+				<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+				<label class="lbl" for="ace-settings-add-container">
+					Inside
+					<b>.container</b>
+				</label>
+			</div>
+		</div><!-- /.pull-left -->
+
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+				<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+				<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+				<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+			</div>
+		</div><!-- /.pull-left -->
+	</div><!-- /.ace-settings-box -->
+</div><!-- /.ace-settings-container -->
+
+<h3 class="header smaller lighter blue">账号信息：</h3>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="formadd" action="" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$accounts.name} </label>
+	                
+				</div>
+			</div>
+		</form>
+	</div><!-- /.col -->
+</div><!-- /.row -->
+<h3 class="header smaller lighter blue">基本信息：</h3>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="formadd" action="" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 店铺名称： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.name} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 店铺图标： </label>
+
+				<div class="col-sm-9">
+					
+		            <img src="{$infos.image}" width="100" height="50">
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 经营项目： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.operating} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 省份： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.province} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 城市： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.city} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 县区： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.county} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 地址： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.address} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.contant} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 手机： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.mobile} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> qq： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$infos.qq} </label>
+	                
+				</div>
+			</div>
+		</form>
+	</div><!-- /.col -->
+</div><!-- /.row -->
+<h3 class="header smaller lighter blue">公司信息：</h3>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="formadd" action="" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司名称： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$companys.name} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司执照号： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$companys.license} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司执照： </label>
+
+				<div class="col-sm-9">
+					
+		           <img src="{$companys.image}" width="100" height="50">
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 执照地址： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$companys.address} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人姓名： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$companys.person} </label>
+	                
+				</div>
+			</div>
+		</form>
+	</div><!-- /.col -->
+</div><!-- /.row -->
+<h3 class="header smaller lighter blue">银行信息：</h3>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="formadd" action="" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 户名： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$settlements.name} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 银行： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$settlements.bank} </label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户行： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$settlements.province} {$settlements.city}</label>
+	                
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网点： </label>
+
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$settlements.branch} </label>
+	                
+				</div>
+			</div>
+		</form>
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
+<script>
+function validateForm(){
+  var x=document.forms["formadd"]["newpassword"].value;
+  var y=document.forms["formadd"]["cnewpassword"].value;
+  if (x==null || x==""){
+  alert("新密码不能为空");
+  return false;
+  }
+  if(x!=y){
+  	alert("新密码输入不一致");
+    return false;
+  }
+}
+</script>

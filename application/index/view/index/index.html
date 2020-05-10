@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="/static/index/js/vue.min.js"></script>
+  {include file="public/head" /}
+<body>
+<!--<div id="app">-->
+<!--	<p>{{ message }}</p>-->
+<!--</div>-->
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			message: '成功引入!'
+		}
+	})
+</script>
+<div class="hmtop">
+	<!--顶部导航条 -->
+	{include file="public/header" /}
+	<!--悬浮搜索框-->
+	{include file="public/nav" /}
+	<div class="clear"></div>
+</div>
+{include file="public/banner" /}
+<div class="shopNav">
+	<div class="slideall">
+		{include file="public/navcont" /}							
+				<!--侧边导航 -->
+	    {include file="public/navfull" /}	
+				<!--轮播-->		
+			<!--小导航 -->
+	    {include file="public/smallnav" /}	
+			<!--走马灯 -->
+	    {include file="public/marqueen" /}
+	    <div class="clear"></div>
+	</div>
+</div>
+<div class="shopMainbg">
+	<div class="shopMain" id="shopmain">
+		<!--今日推荐 -->
+		{include file="public/recommendation" /}
+		<div class="clear "></div>
+		<!--热门活动 -->
+		{include file="public/activity" /}
+		<div class="clear "></div>
+		{volist name="category" id="vo"}
+        <div id="f1">
+		<!--甜点-->
+			<div class="am-container ">
+				<div class="shopTitle ">
+					<h4>{$vo.name}</h4>
+					<div class="today-brands ">
+					{volist name="vo['child']" id="sub"}
+					   {volist name=":categorysmall($sub['id'])" id="vo2" length='2'}
+						<a href="# ">{$vo2.name}</a>
+						{/volist}
+					{/volist}
+					</div>
+					<span class="more ">
+		            <a href="# ">更多<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+	                </span>
+				</div>
+			</div>
+			<div class="am-g am-g-fixed floodFour">
+				<div class="am-u-sm-5 am-u-md-4 text-one list ">
+					<div class="word">
+					{volist name="vo['child']" id="sub"}
+					   {volist name=":categorysmall($sub['id'])" id="vo2" length='2'}
+						<a class="outer" href="#"><span class="inner"><b class="text">{$vo2.name}</b></span></a>
+										
+						{/volist}
+					{/volist}					
+					</div>
+					<a href="# ">
+						<div class="outer-con ">
+							<div class="title ">
+							开抢啦！
+							</div>
+							<div class="sub-title ">
+								零食大礼包
+							</div>									
+						</div>
+					</a>
+					<div class="triangle-topright"></div>						
+				</div>
+				{volist name=":indexproduct($vo['id'])" id="vo3" length='8'}
+				<div class="am-u-sm-6 am-u-md-2 text-three">
+					<div class="outer-con ">
+						<div class="title ">
+							{$vo3.name|subtext=10}
+						</div>
+						<div class="sub-title ">
+							¥{$vo3.price}
+						</div>
+						<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+					</div>
+					<a href="{:url('Introduction/index',['id'=>$vo3.id])}"><img src="{$vo3.id|productpicture}" /></a>
+				</div>
+                {/volist}	
+			</div>
+            <div class="clear "></div>  
+        </div> 
+         {/volist}  
+	{include file="public/footer" /}
+	</div>
+</div>
+<!--引导 -->
+{include file="public/navcir" /}
+<!--菜单 -->
+{include file="public/tip" /}
+</body>
+</html>

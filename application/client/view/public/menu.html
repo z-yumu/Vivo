@@ -1,0 +1,18 @@
+<aside class="menu">
+	<ul>
+		<li class="person active">
+			<a href="{:url('index/index')}"><i class="am-icon-user"></i>个人中心</a>
+		</li>
+		{volist name="showlist" id="vo"}
+		<li class="person">
+			<p><i class="{$vo.iconm}"></i>{$vo.name}</p>
+			<ul>
+			{volist name="vo['child']" id="sub"}
+				<li> <a href="{:url($sub.link)}">{$sub.name}</a></li>
+			{/volist}
+			</ul>
+		</li>
+		{/volist}
+	</ul>
+
+</aside>

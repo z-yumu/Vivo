@@ -1,0 +1,320 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+	<title>商家注册</title>
+	<link rel="stylesheet" href="/static/index/css/logostyle.css">
+	<link rel="stylesheet" href="/static/index/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
+	<link href="/static/index/css/dlstylea.css" rel="stylesheet" type="text/css">
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+
+	<link href="/static/index/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+	<link href="/static/index/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+
+	<link href="/static/index/css/personal.css" rel="stylesheet" type="text/css">
+	<link href="/static/index/css/orstyle.css" rel="stylesheet" type="text/css">
+
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+<style type="text/css">
+       .input{
+	   border-color:#FF0000;
+	   border-style:solid;
+	   }
+     </style>
+</head>
+
+<body>
+	<!--头 -->
+<header>
+<article>
+	<div class="mt-logo">
+		<!--顶部导航条 -->
+		<div class="am-container header">
+			<ul class="message-l">
+				<div class="topMessage">
+					<div class="menu-hd">
+						<a href="#" target="_top" class="h">亲，请登录</a>
+						<a href="#" target="_top">免费注册</a>
+					</div>
+				</div>
+			</ul>
+			<ul class="message-r">
+				<div class="topMessage home">
+					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+				</div>
+				<div class="topMessage my-shangcheng">
+					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+				</div>
+				<div class="topMessage mini-cart">
+					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+				</div>
+				<div class="topMessage favorite">
+					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+				</div>
+			</ul>
+		</div>
+
+			<!--悬浮搜索框-->
+
+		<div class="nav white">
+			<div class="logoBig">
+				<li><img class="logopic" src="/static/index/images/vivo_logo.jpg" /></li>
+			</div>
+
+			<div class="search-bar pr">
+				<a name="index_none_header_sysc" href="#"></a>
+				<form>
+					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+				</form>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</article>
+</header>
+<hr/>	
+<div class="res-banner2">
+	<div class="res-main">
+		<div class="login-box9">
+			<div class="am-tabs" id="doc-my-tabs">
+				<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+					<li><a href="">第一步、账号设置</a></li>
+					<li class="am-active"><a href="">第二步、填写信息</a></li>
+					<li><a href="">第三步、完成注册</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="login-box8">
+			<div class="am-tabs">
+				<div class="am-tabs-bd">
+					<div class="am-tab-panel am-active">
+					   	<form name="form" onsubmit="return check()" action="{:url('Register/accountsave')}" method="post" >						
+				        <div class="user-email">
+							 <div class="account1">登录名：{$email}</div> 
+                        </div>	
+                         <div class="account">
+							设置密码
+							
+                        </div>	
+                         <div class="user-email">
+							<label for="password">登录密码：</label>
+							<input type="password" name="password" id="password" placeholder="请输入登录密码">
+                        </div>	
+                         <div class="user-email">
+							<label for="repassword">密码确认：</label>
+							<input type="password" name="repassword" id="repassword" placeholder="确认登录密码">
+                        </div>	
+                        <input type="hidden" name="passwordchek" id="passwordchek">  	 
+                        <div class="account">
+							基本信息
+                        </div>	
+                         <div class="user-email">
+							<label for="email">手机号：</label>
+							<input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号">
+                        </div>
+                         <input type="hidden" name="mobilechek" id="mobilechek"> 
+                        <div class="check" id="checkmobile"></div>		
+                        <div class="user-email">
+							<label for="email">验证码：</label>
+							<input type="text" name="mobilecode" id="mobilecode" placeholder="请输入你的手机验证码">
+                        </div>	
+                         <input type="hidden" name="mobilecodechek" id="mobilecodechek"> 
+                        <div class="user-email">
+							<label for="email">&nbsp;</label>
+							<button onclick="return false" id="sub" class="yanzheng">确认验证码</button>
+                        </div>	
+                        	
+                         <div class="user-email">
+							<label for="email">会员名：</label>
+							<input type="text" name="accountname" id="accountname" placeholder="请输入会员名" onfocusout="checkaccountname()">
+							<div class="check" id="checkaccountname"></div>
+							<input type="hidden" name="accountnamechek" id="accountnamechek">
+                        </div>								
+                        <input type="hidden" name="email" value="{$email}">	
+						<div class="user-email">
+						<label for="email"></label>
+							<input type="submit" name="" value="确认" class="am-btn am-btn-primary am-btn-sm am-fl">
+						</div>
+                        </form>
+					</div>
+					<script>
+						$(function() {
+						    $('#doc-my-tabs').tabs();
+						  })
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		<!--底部-->
+	<div class="footer">
+		<div class="footer-hd">
+			<p>
+				<em>©Vivo</em>
+			</p>
+		</div>
+	</div>
+</div>
+<script language="JavaScript"> 
+ var account=document.getElementById('repassword'); //获取触发控件
+ account.onblur=function(){ //当鼠标离开时触发函数
+   var password=$('#password').val();
+   var repassword=$('#repassword').val();
+   if(password!=repassword){
+   	$('[name=passwordchek]').val(1);
+   	$('#password').focus();
+    alert("密码不一致，重新输入");
+    return false;
+   }else{
+    	$('[name=passwordchek]').val(0);
+   }
+ }
+</script>
+<script language="JavaScript"> 
+ var mobiles = document.getElementById('mobile');  //获取用户控件
+ mobiles.onblur = function () {  //当用户离开当前文本框的时行验证
+    var mobile=$('#mobile').val();
+    if(!(/^1[3456789]\d{9}$/.test(mobile))){
+      var html='手机号码有误请重新输入';
+      $('#checkmobile').html(html);
+      $('[name=mobilechek]').val(1);
+      $('#mobile').focus();
+      return false;
+    }else{
+      var postData={
+	      'mobile':mobile,
+	     };   
+    var urlm="{:url('Register/checkmobile')}";
+    var urlc="{:url('Register/mobilesend')}";
+	$.post(urlm,postData,function(result){
+       if(result==1){
+	    var html='此手机号已注册';
+        $('[name=mobilechek]').val(1);
+	    $('#checkmobile').html(html);
+	    $('#mobile').focus();
+       	return false;
+       }else{  
+	         $.post(urlc,postData,function(result){
+	         	  if(result==1){
+				    var html='验证码已发送,请输入验证码';
+				    $('[name=mobilechek]').val(0);
+				    $('#checkmobile').html(html);
+				    $('#mobilecode').focus();
+			       	return true;
+                 }else{
+                 	$('[name=mobilechek]').val(1);
+				    var html='验证码发送失败请重新输入';
+				    $('#checkmobile').html(html);
+				    $('#mobile').focus();
+			       	return false;
+                 }
+             })
+       }
+	})   
+  }   
+} 
+</script>
+<script language="JavaScript">
+$('#sub').click(function(){ 
+  var mobilecode=$('#mobilecode').val();
+    if(mobilecode==""){
+      $('[name=mobilecodechek]').val(1)
+      alert("请输入验证码");  
+      return false;
+    }else{
+      var postData={
+	      'mobilecode':mobilecode,
+	     };   
+    var url="{:url('Register/mobilecode')}";
+	$.post(url,postData,function(result){
+       if(result==1){
+       	$('[name=mobilecodechek]').val(1);
+       	alert('验证码错误，请重新输入');
+       	$('#mobilecode').focus();
+       	return false;
+       }else{ 
+       	$('[name=mobilecodechek]').val(0);
+        alert('验证码正确'); 
+	     return true; 
+       }
+	})   
+  }  
+
+}) 
+</script>
+<script>
+function checkaccountname(){
+    var accountname=$('#accountname').val();
+    var postData={
+	      'accountname':accountname,
+	     };   
+    var url="{:url('Register/checkaccountname')}";
+	$.post(url,postData,function(result){
+       if(result==1){	
+       	$('[name=accountnamechek]').val(1);
+       	var html='此会员名已注册，请重新输入';
+	    $('#checkaccountname').html(html);
+	    $('#accountname').focus();
+       	return false;
+       }else{  
+       	var html='';
+       	$('[name=accountnamechek]').val(0);
+	    $('#checkaccountname').html(html);
+	     return true;   
+       }
+	})   
+  }    
+</script>
+<!-- <SCRIPT language="JavaScript">  
+function check(){
+	if(document.form.password.value==""){  
+         alert("密码不能为空"); 
+         $('#password').focus();
+        return false;  
+    } 
+    if(document.form.passwordchek.value==1){  
+         alert("密码不一致"); 
+         $('#password').focus();
+        return false;  
+    }   
+    if(document.form.mobile.value==""){  
+         alert("手机号不能为空"); 
+         $('#mobile').focus();
+        return false;  
+    } 
+    if(document.form.mobilechek.value==1){  
+         alert("手机号错误"); 
+         $('#mobile').focus();
+        return false;  
+    }  
+    if(document.form.mobilecode.value==""){  
+         alert("手机号验证码不能为空"); 
+         $('#mobilecode').focus();
+        return false;  
+    } 
+    if(document.form.mobilecodechek.value==1){  
+         alert("手机号验证码错误"); 
+         $('#mobilecode').focus();
+        return false;  
+    }  
+    if(document.form.accountname.value==""){  
+         alert("会员名不能为空"); 
+         $('#accountname').focus();
+        return false;  
+    } 
+    if(document.form.accountnamechek.value==1){  
+         alert("会员名有误"); 
+         $('#accountname').focus();
+        return false;  
+    }  
+    return true;  
+} 
+</SCRIPT> -->
+</body>
+</html>

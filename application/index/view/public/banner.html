@@ -1,0 +1,28 @@
+<div class="banner">
+<!--轮播 -->
+<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
+	<ul class="am-slides">
+	{volist name="ad" id="vo"}
+		<li class="banner{$i}"><a href=""><img src="{$vo.picture}" width="100%"/></a></li>
+		
+   {/volist}
+	</ul>
+</div>
+<div class="clear"></div>	
+</div>
+<script type="text/javascript">
+	(function() {
+		$('.am-slider').flexslider();
+	});
+	$(document).ready(function() {
+		$("li").hover(function() {
+			$(".category-content .category-list li.first .menu-in").css("display", "none");
+			$(".category-content .category-list li.first").removeClass("hover");
+			$(this).addClass("hover");
+			$(this).children("div.menu-in").css("display", "block")
+		}, function() {
+			$(this).removeClass("hover")
+			$(this).children("div.menu-in").css("display", "none")
+		});
+	})
+</script>

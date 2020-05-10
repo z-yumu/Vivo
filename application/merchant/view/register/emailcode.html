@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+	<title>员工注册</title>
+	<link rel="stylesheet" href="/static/index/css/logostyle.css">
+	<link rel="stylesheet" href="/static/index/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
+	<link href="/static/index/css/dlstylere.css" rel="stylesheet" type="text/css">
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+
+	<link href="/static/index/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+	<link href="/static/index/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+
+	<link href="/static/index/css/personal.css" rel="stylesheet" type="text/css">
+	<link href="/static/index/css/orstyle.css" rel="stylesheet" type="text/css">
+
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+	<script src="/static/index/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+</head>
+
+<body>
+	<!--头 -->
+<header>
+<article>
+	<div class="mt-logo">
+		<!--顶部导航条 -->
+		<div class="am-container header">
+			<ul class="message-l">
+				<div class="topMessage">
+					<div class="menu-hd">
+						<a href="#" target="_top" class="h">亲，请登录</a>
+						<a href="#" target="_top">免费注册</a>
+					</div>
+				</div>
+			</ul>
+			<ul class="message-r">
+				<div class="topMessage home">
+					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+				</div>
+				<div class="topMessage my-shangcheng">
+					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+				</div>
+				<div class="topMessage mini-cart">
+					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+				</div>
+				<div class="topMessage favorite">
+					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+				</div>
+			</ul>
+		</div>
+
+			<!--悬浮搜索框-->
+
+		<div class="nav white">
+			<div class="logoBig">
+				<li><img class="logopic" src="/static/index/images/vivo_logo.jpg" /></li>
+			</div>
+
+			<div class="search-bar pr">
+				<a name="index_none_header_sysc" href="#"></a>
+				<form>
+					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+				</form>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</article>
+</header>
+<hr/>	
+<div class="res-banner2">
+	<div class="res-main">
+		<div class="login-box9">
+			<div class="am-tabs" id="doc-my-tabs">
+				<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+					<li class="am-active"><a href="">第一步、账号设置</a></li>
+					<li><a href="">第二步、填写信息</a></li>
+					<li><a href="">第三步、完成注册</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="login-box8">
+			<div class="am-tabs">
+				<div class="am-tabs-bd">
+					<div class="am-tab-panel am-active">
+					你的注册邮箱为：{$email}<br><br>
+					   		<form name="form" onsubmit="return check()" action="{:url('Register/emailcodecheck')}" method="post" >							
+				        <div class="user-email">
+							<label for="email">请输入验证码：</label>
+							<input type="text" name="emailcode" id="text" placeholder="请输入你的邮箱验证码">
+                        </div>										
+                         <input name="email" value="{$email}" type="hidden"/>
+						
+						<div class="am-cf">
+							<input type="submit" name="" value="验证" class="am-btn am-btn-primary am-btn-sm am-fl">
+						</div>
+                        </form>
+					</div>
+					<script>
+						$(function() {
+						    $('#doc-my-tabs').tabs();
+						  })
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		<!--底部-->
+	{include file='public/footer' /}
+</div>
+<SCRIPT language="JavaScript">  
+function check(){
+	if(document.form.emailcode.value==""){  
+         alert("邮箱不能为空"); 
+        return false;  
+    }  
+    return true;  
+} 
+</SCRIPT>
+</body>
+</html>

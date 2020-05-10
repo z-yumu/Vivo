@@ -1,0 +1,454 @@
+<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>商家后台管理</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/static/admin/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/static/admin/assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/static/admin/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/static/admin/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="/static/admin/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/static/admin/assets/css/sanji.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/static/admin/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="/static/admin/assets/js/ace-extra.min.js"></script>
+		  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="/static/admin/assets/js/html5shiv.min.js"></script>
+		<script src="/static/admin/assets/js/respond.min.js"></script>
+		<![endif]-->
+</head>
+<div class="main-content">
+<div class="main-content-inner">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+<ul class="breadcrumb">
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="#">主页</a>
+	</li>
+
+	<li>
+		<a href="#">个人管理</a>
+	</li>
+	<li class="active">申请</li>
+</ul><!-- /.breadcrumb -->
+</div>
+
+<div class="page-content">
+<div class="ace-settings-container" id="ace-settings-container">
+	<div class="ace-settings-box clearfix" id="ace-settings-box">
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<div class="pull-left">
+					<select id="skin-colorpicker" class="hide">
+						<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+						<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+						<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+						<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+					</select>
+				</div>
+				<span>&nbsp; Choose Skin</span>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+				<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+				<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+				<label class="lbl" for="ace-settings-add-container">
+					Inside
+					<b>.container</b>
+				</label>
+			</div>
+		</div><!-- /.pull-left -->
+
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+				<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+				<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+				<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+			</div>
+		</div><!-- /.pull-left -->
+	</div><!-- /.ace-settings-box -->
+</div><!-- /.ace-settings-container -->
+
+<div class="page-header">
+	<h1>
+		个人管理
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			基本信息
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form action="{:url('Shop/infosave')}" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 名称：</label>
+
+				<div class="col-sm-9">
+					<input name="name" value="{$infos.name}" type="text" id="name" placeholder="个人名称" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 管理项目： </label>
+
+				<div class="col-sm-9">
+				<input  type="hidden" value="{$infos.operating}" id="firstcategorysid">
+					<select name="operating" class="col-xs-10 col-sm-5" id="firstcategorys">
+					{volist name="firstcategorys" id="vo"}     
+						<option value="{$vo.id}">{$vo.name}</option>
+					{/volist}	
+					</select>
+				</div>
+			</div>
+		
+             <div class="form-group">
+				<div class="col-sm-9">
+					<div class="row">
+								<div class="widget-body">
+									<div class="widget-main">
+										<div class="form-group">
+											<div class="col-xs-12">
+</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+				</div>
+			</div>
+				<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 地区 ：</label>
+					<div class="col-sm-9">
+            <!--省份选择-->
+            <select name="prov" id="prov" onchange="showCity(this)">
+                <option>=请选择省份=</option>
+
+            </select>
+            <input type="hidden" value="{$infos.province}" id="provid">
+
+            <!--城市选择-->
+            <select name="city" id="city" onchange="showCountry(this)">
+                <option>=请选择城市=</option>
+            </select>
+             <input type="hidden" value="{$infos.city}" id="cityid">
+            <!--县区选择-->
+            <select name="country" id="country" onchange="selecCountry(this)">
+                <option>=请选择县区11=</option>
+            </select>
+             <input type="hidden" value="{$infos.country}" id="countryid">
+            <button type="button" class="btn met1" onClick="showAddr()">确定</button>
+     
+</div>
+				
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 地址： </label>
+
+				<div class="col-sm-9">
+					<input name="address" value="{$infos.address}" type="text" id="addr-show" placeholder="地址" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人： </label>
+
+				<div class="col-sm-9">
+					<input name="contant" value="{$infos.contant}" type="text" id="contant" placeholder="联系人" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 手机： </label>
+
+				<div class="col-sm-9">
+					<input name="mobile" value="{$infos.mobile}" type="text" id="mobile" placeholder="手机" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> QQ： </label>
+
+				<div class="col-sm-9">
+					<input name="qq" value="{$infos.qq}" type="text" id="qq" placeholder="QQ" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+             <input name="id" value="{$infos.id}" type="hidden"/>
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						提交
+					</button>
+
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" type="reset">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						重置
+					</button>
+				</div>
+			</div>
+		<!-- </form> -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
+<script src="/static/admin/assets/liandong/city.js"></script>
+<script type="text/javascript">
+
+/*根据id获取对象*/
+function $(str) {
+    return document.getElementById(str);
+}
+var addrShow = $('addr-show');
+var btn = document.getElementsByClassName('met1')[0];
+var addrshow1 = $('addr-show').value;
+//获取省市县的对象
+var prov = $('prov');
+var city = $('city');
+var country = $('country');
+//获取默认省市县的对象
+var provid = $('provid').value;
+var cityid = $('cityid').value;
+var countryid = $('countryid').value;
+
+//获取firstcategorys对象
+var firstcategorys = $('firstcategorys');
+//获取firstcategorysid的值
+var firstcategorysid = $('firstcategorysid').value;
+//获取firstcategorys默认选中值
+for (var i=0;i<firstcategorys.length;i++) {
+    	if(firstcategorysid==firstcategorys[i].value){
+            firstcategorys[i].selected=true;
+            break;
+        }
+    }
+
+/*用于保存当前所选的省市区*/
+var current = {
+    prov: '',
+    city: '',
+    country: ''
+};
+
+/*自动加载省份列表*/
+(function showProv() {
+    btn.disabled = true;
+    var len = provice.length;
+    for (var i = 0; i < len; i++) {
+        var provOpt = document.createElement('option');
+        provOpt.innerText = provice[i]['name'];
+        provOpt.value = i;
+        prov.appendChild(provOpt);
+    }
+
+    for(var i=0;i<prov.length;i++){
+        if(provid==prov[i].value){
+            prov[i].selected=true;
+            break;
+        }
+    }
+
+    var val = provid;
+    if (val != current.prov) {
+        current.prov = val;
+        addrShow.value = addrshow1;
+        btn.disabled = true;
+    }
+    //console.log(val);
+    if (val != null) {
+        city.length = 1;
+        var cityLen = provice[val]["city"].length;
+        for (var j = 0; j < cityLen; j++) {
+            var cityOpt = document.createElement('option');
+            cityOpt.innerText = provice[val]["city"][j].name;
+            cityOpt.value = j;
+            city.appendChild(cityOpt);
+        }
+    }
+    for(var i=0;i<city.length;i++){
+        if(cityid==city[i].value){
+            city[i].selected=true;
+            break;
+        }
+    }
+    var val = cityid;
+    current.city = val;
+    if (val != null) {
+        country.length = 1; //清空之前的内容只留第一个默认选项
+        var countryLen = provice[current.prov]["city"][val].districtAndCounty.length;
+        if(countryLen == 0){
+            addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name;
+            return;
+        }
+        for (var n = 0; n < countryLen; n++) {
+            var countryOpt = document.createElement('option');
+            countryOpt.innerText = provice[current.prov]["city"][val].districtAndCounty[n];
+            countryOpt.value = n;
+            country.appendChild(countryOpt);
+        }
+    }
+    for(var i=0;i<country.length;i++){
+        if(countryid==country[i].value){
+           country[i].selected=true;
+            break;
+        }
+    }
+
+})();
+
+/*根据所选的省份来显示城市列表*/
+function showCity(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    if (val != current.prov) {
+        current.prov = val;
+        addrShow.value = '';
+        btn.disabled = true;
+    }
+    //console.log(val);
+    if (val != null) {
+        city.length = 1;
+        var cityLen = provice[val]["city"].length;
+        for (var j = 0; j < cityLen; j++) {
+            var cityOpt = document.createElement('option');
+            cityOpt.innerText = provice[val]["city"][j].name;
+            cityOpt.value = j;
+            city.appendChild(cityOpt);
+        }
+    }
+}
+
+/*根据所选的城市来显示县区列表*/
+function showCountry(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    current.city = val;
+    if (val != null) {
+        country.length = 1; //清空之前的内容只留第一个默认选项
+        var countryLen = provice[current.prov]["city"][val].districtAndCounty.length;
+        if(countryLen == 0){
+            addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name;
+            return;
+        }
+        for (var n = 0; n < countryLen; n++) {
+            var countryOpt = document.createElement('option');
+            countryOpt.innerText = provice[current.prov]["city"][val].districtAndCounty[n];
+            countryOpt.value = n;
+            country.appendChild(countryOpt);
+        }
+    }
+}
+
+/*选择县区之后的处理函数*/
+function selecCountry(obj) {
+    current.country = obj.options[obj.selectedIndex].value;
+    if ((current.city != null) && (current.country != null)) {
+        btn.disabled = false;
+    }
+}
+
+/*点击确定按钮显示用户所选的地址*/
+function showAddr() {
+    addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+}
+
+
+/*选择县区之后的处理函数*/
+function selecCountry(obj) {
+    current.country = obj.options[obj.selectedIndex].value;
+    if ((current.city != null) && (current.country != null)) {
+        btn.disabled = false;
+    }
+}
+
+/*点击确定按钮显示用户所选的地址*/
+function showAddr() {
+    addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+}
+</script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+$('#sub').click(function () {
+	 // alert("测试");
+     ajaxPost();
+}) 
+function ajaxPost(){
+   var formData=new FormData();
+   if($('#file')[0].files.length<=0){
+   	alert("请选择文件");
+   	return;
+   }
+    formData.append('image',$('#file')[0].files[0]);
+    $.ajax({
+     type:'post',
+     url:"{:url('Shop/picture')}",
+     data:formData,
+     cache:false,
+     processData:false,
+     contentType:false,
+	  success:function(data){
+	  if(data){
+	   var html='<img src="'+data.src+'" width="150" height="150">';
+	   $('#content').html(html);
+	   $('[name=picture]').val(data.src)
+	   }else{
+	   	alert("上传失败");
+	   }
+
+     }
+   })
+}
+</script>

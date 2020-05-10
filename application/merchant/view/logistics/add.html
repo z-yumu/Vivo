@@ -1,0 +1,264 @@
+ {include file="public/header" /}
+ <link rel="stylesheet" href="/static/admin/assets/css/wuliu.css" />
+<div class="main-content">
+<div class="main-content-inner">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+<ul class="breadcrumb">
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="#">主页</a>
+	</li>
+
+	<li>
+		<a href="#">物流管理</a>
+	</li>
+	<li class="active">发货</li>
+</ul><!-- /.breadcrumb -->
+</div>
+
+<div class="page-content">
+<div class="ace-settings-container" id="ace-settings-container">
+
+	<div class="ace-settings-box clearfix" id="ace-settings-box">
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<div class="pull-left">
+					<select id="skin-colorpicker" class="hide">
+						<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+						<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+						<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+						<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+					</select>
+				</div>
+				<span>&nbsp; Choose Skin</span>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+				<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+				<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+				<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+				<label class="lbl" for="ace-settings-add-container">
+					Inside
+					<b>.container</b>
+				</label>
+			</div>
+		</div><!-- /.pull-left -->
+
+		<div class="pull-left width-50">
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+				<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+				<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+			</div>
+
+			<div class="ace-settings-item">
+				<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+				<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+			</div>
+		</div><!-- /.pull-left -->
+	</div><!-- /.ace-settings-box -->
+</div><!-- /.ace-settings-container -->
+
+<div class="page-header">
+	<h1>
+		物流管理
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			发货
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<form name="form" action="{:url('logistics/addsave')}" method="post" onsubmit="return check()" class="form-horizontal" role="form">
+		    <div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 订单号： </label>
+
+				<div class="col-sm-9">
+					
+					  <label class="control-label no-padding-right" for="form-field-1">
+		              {$orderforms.out_trade_no}
+	                  </label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 产品名称： </label>
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$orderforms.product_id|productname} </label>
+	                
+				</div>
+			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 销售属性： </label>
+
+				<div class="col-sm-9">
+				<label class="control-label no-padding-right" for="form-field-1" id="ordersalesattribute">
+					{volist name=":orderformsalesattributevaluename($orderforms.attributes,$orderforms.id)" id="vo2"}
+								 {$vo2.sales_attribute_value_id|orderformsalesattributename}：
+                                 {$vo2.sales_attribute_value_id|salesattributevaluename};
+								{/volist}
+				</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 价格 ：</label>
+
+				<div class="col-sm-9">
+					<label class="control-label no-padding-right" for="form-field-1"> {$orderforms.price} </label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 数量 ：</label>
+
+				<div class="col-sm-9">
+					<label class="control-label no-padding-right" for="form-field-1"> {$orderforms.buy_count} </label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 所在地区： </label>
+				<div class="col-sm-9">
+					 <input type="hidden" value="{$address.province}" id="provid">
+					 <input type="hidden" value="{$address.city}" id="cityid">
+					 <input type="hidden" value="{$address.country}" id="countryid">
+					<input name="area" value="" type="text" id="addr-show" placeholder="地址" class="col-xs-10 col-sm-5" readonly/>  
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 详细地址： </label>
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$address.address} </label>
+	                
+				</div>
+			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 收货人： </label>
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$address.name} </label>
+	                
+				</div>
+			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系电话： </label>
+				<div class="col-sm-9">
+					
+		            <label class="control-label no-padding-right" for="form-field-1"> {$address.mobilephone} </label>
+	                
+				</div>
+			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 快递名称： </label>
+
+				<div class="col-sm-9">
+					<select name="expcode" class="col-xs-10 col-sm-5" id="expcode">
+					{volist name="couriercompanys" id="vo"}     
+						<option value="{$vo.expcode}">{$vo.name}</option>
+					{/volist}
+					
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 运单号码 ：</label>
+
+				<div class="col-sm-9">
+					<input name="expno" type="text" id="expno" placeholder="运单号码" class="col-xs-10 col-sm-5" />
+				</div>
+			</div>
+			<input type="hidden" name="orderform_id" value="{$orderforms.id}">
+			<input type="hidden" name="product_id" value="{$orderforms.product_id}">
+			<input type="hidden" name="out_trade_no" value="{$orderforms.out_trade_no}">
+			<input type="hidden" name="merchant_id" value="{$orderforms.merchant_id}">
+             <input name="salesattribute" value="" type="hidden" id="salesattribute"/>
+             <input type="hidden" name="address" value="{$address.address}">
+			<input type="hidden" name="addressmobilephone" value="{$address.mobilephone}">
+			<input type="hidden" name="addressname" value="{$address.name}">
+			
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						提交
+					</button>
+
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" type="reset">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						重置
+					</button>
+				</div>
+			</div>
+		</form> 
+	</div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
+<script src="/static/admin/assets/liandong/city.js"></script>
+<script src="/static/admin/assets/liandong/wuliu.js"></script>
+
+
+<script type="text/javascript">
+      
+//获取默认省市县的值
+var provid = $('provid').value;
+var cityid = $('cityid').value;
+var countryid = $('countryid').value;
+//获取默认省市县的对象
+var addrShow = $('addr-show');
+//获取销售属性对象
+var salesattribute = $('salesattribute');
+//获取html标签之间的文本
+var ordersalesattribute=document.getElementById('ordersalesattribute').innerHTML;
+//去掉获取销售属性的文本中的空格和换行
+var shuxing=ordersalesattribute.replace(/\s*/g,"");
+
+/*自动加载省份列表*/
+(function show() {
+    addrShow.value = provice[provid].name + '-' + provice[provid]["city"][cityid].name + '-' + provice[provid]["city"][cityid].districtAndCounty[countryid];
+     salesattribute.value=shuxing;
+})();
+
+</script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<SCRIPT language="JavaScript">  
+function check(){
+	if(document.form.expno.value==""){  
+         alert("运输单号不能为空"); 
+         $('#expno').focus();
+        return false;  
+    } 
+    
+    return true;  
+} 
+</SCRIPT>
