@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>评论区</title>
+
+		<link href="/static/client/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="/static/client/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+
+		<link href="/static/client/css/personal.css" rel="stylesheet" type="text/css">
+		<link href="/static/client/css/infstyle.css" rel="stylesheet" type="text/css">
+		<script src="/static/client/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		<script src="/static/client/AmazeUI-2.4.2/assets/js/amazeui.js"></script>			
+	</head>
+	<style>
+		#user-name2{
+			width: 500px;
+			height: 150px;
+		}
+		.divpostion{
+			position: absolute;
+			margin-bottom: 100px;
+		}
+		.btnpostion{
+			position: absolute;
+			margin-top: 130px;
+		}
+	</style>
+	<body>
+		<!--头 -->
+		{include file="public/header" /}
+		{include file="public/nav" /}
+		<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="user-info">
+						<!--标题 -->
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">评论区</strong> / <small>Personal&nbsp;comment</small></div>
+						</div>
+						<hr/>
+						<!--头像 -->
+						<div class="user-infoPic">
+							<div class="filePic">
+								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+								<img class="am-circle am-img-thumbnail" src="{$productid|productpicture}" alt="" />
+							</div>
+						</div>
+						<div id="content"></div>
+						<!--个人信息 -->
+						<div class="info-main">
+							<form action="{:url('personal/commentsave')}" method="post" class="am-form am-form-horizontal">
+								<input type="hidden" name="productid" value="{$productid}">
+								<input type="hidden" name="orderid" value="{$orderid}">
+								<input type="hidden" name="clientid" value="{$clientid}">
+								<div class="am-form-group divpostion">
+									<label for="user-name2" class="am-form-label">评论内容</label>
+									<div class="am-form-content">
+										<input type="textarea" name="content" value="" id="user-name2" placeholder="请输入内容">
+                                          <small></small>
+									</div>
+								</div>
+								<div class="info-btn btnpostion">
+									<button type="submit" class="am-btn am-btn-danger">评论</button>
+								</div>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+				<!--底部-->
+				{include file="public/footer" /}
+			</div>
+			 {include file="public/menu" /}
+		</div>
+
+	</body>
+
+</html>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>

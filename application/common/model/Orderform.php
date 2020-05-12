@@ -51,7 +51,7 @@ class Orderform extends Model
         'id'=>'desc',
       ];
       return $this->where('client_id',$registerid)
-                  ->field('merchant_id,out_trade_no,sum(price) as price,create_time,product_id,pay_status,logistics_status')
+                  ->field('id,client_id,merchant_id,out_trade_no,sum(price) as price,create_time,product_id,pay_status,logistics_status,comment_status,buy_count')
                   ->group('merchant_id,out_trade_no')
                   ->order($order)
                   ->paginate(15);

@@ -15,7 +15,6 @@
 
 <script src="/static/client/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 <script src="/static/client/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
-
 </head>
 
 <body>
@@ -38,7 +37,7 @@
 			<li class="am-active"><a href="#tab1">所有订单</a></li>
 			<li><a href="#tab2">待付款</a></li>
 			<li><a href="#tab3">待发货</a></li>
-			<li><a href="#tab4">待收货</a></li>
+<!--			<li><a href="#tab4">待收货</a></li>-->
 			<li><a href="#tab5">待评价</a></li>
 		</ul>
 
@@ -99,7 +98,6 @@
                                  {$vo3.sales_attribute_value_id|salesattributevaluename};
                                  <br/>
 								{/volist}
-
 														</p>
 													</a>
 												</div>
@@ -878,11 +876,12 @@
 				<div class="order-main">
 					<div class="order-list">
 						<!--等待评价	-->
-						{volist name=}
+						{volist name="order" id="vo"}
+						{if $vo.comment_status==0}
 					<div class="order-status4">
 							<div class="order-title">
-								<div class="dd-num">订单编号：<a href="javascript:;">1601430</a></div>
-								<span>成交时间：2015-12-20</span>
+								<div class="dd-num">订单编号：<a href="javascript:;">{$vo.out_trade_no}</a></div>
+								<span>成交时间：{$vo.create_time}</span>
 							</div>
 							<div class="order-content">
 								<div class="order-left">
@@ -890,7 +889,7 @@
 										<li class="td td-item">
 											<div class="item-pic">
 												<a href="#" class="J_MakePoint">
-													123123<img src="../images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg">
+													<img src="{$vo.product_id|productpicture}" class="itempic J_ItemImg">
 												</a>
 											</div>
 											<div class="item-info">
@@ -905,17 +904,17 @@
 										</li>
 										<li class="td td-price">
 											<div class="item-price">
-												333.00
+												{$vo.price}
 											</div>
 										</li>
 										<li class="td td-number">
 											<div class="item-number">
-												<span>×</span>2
+												<span>×</span>{$vo.buy_count}
 											</div>
 										</li>
 										<li class="td td-operation">
 											<div class="item-operation">
-												<a href="refund.html">退款/退货</a>
+												<a href="refund.html"></a>
 											</div>
 										</li>
 									</ul>
@@ -924,8 +923,7 @@
 								<div class="order-right">
 									<li class="td td-amount">
 										<div class="item-amount">
-											合计：676.00
-											<p>含运费：<span>10.00</span></p>
+											<p>运费：<span></span></p>
 										</div>
 									</li>
 									<div class="move-right">
@@ -937,8 +935,8 @@
 											</div>
 										</li>
 										<li class="td td-change">
-											<a href="commentlist.html">
-												<div class="am-btn am-btn-danger anniu creatAddr">
+											<a href="{:url('Personal/commentcontent',['pid'=>$vo.product_id,'orderid'=>$vo.id,'clientid'=>$vo.client_id])}" id="commentClick">
+												<div class="am-btn am-btn-danger anniu ">
 													评价商品</div>
 											</a>
 										</li>
@@ -946,8 +944,9 @@
 								</div>
 							</div>
 						</div>
+						{/if}
+						{/volist}
 					</div>
-
 				</div>
 
 			</div>

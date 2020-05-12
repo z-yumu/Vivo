@@ -177,33 +177,27 @@ class Order extends Base
     //购物车订单提交
     public function shopcartordersave()
     {
-      if($this->getLoginUser()==-1){
-          return redirect('client/loginc/index')->remember();
-      }else
-          {
-          //检查数据
-          $data=input('param.');
-//           dump($data);exit;
-          $validate =validate('Order');
-          if (!$validate->scene('shopcartorder')->check($data))
-          {
-              $this->error($validate->getError());
-          }
-          $addressid=$data['addressid'];
-          $shopcart=new ShopcartModel;
-          //订单号
-          $shopno=mt_rand(999, 9999).time();
-          //订单数组,count方法
-          $shopcartnum=count($data['shopcartid']);
-          //循环输入订单表
-           for($i=0;$i<$shopcartnum;$i++)
-           {    //局部变量销毁
+        //1、客户身份验证
+        if($this->getLoginUser()==-1) {
+            return redirect('client/loginc/index')->remember();
+        }else{
+            $data=input('param.');
+            // dump($data);exit;
+            $validate =validate('Order');
+            if (!$validate->scene('shopcartorder')->check($data)) {
+                $this->error($validate->getError());
+            }
+            $addressid=$data['addressid'];
+            $shopcart=new ShopcartModel;
+            $shopno=mt_rand(999, 9999).time();
+            // 循环写入订单表
+            $shopcartnum=count($data['shopcartid']);
+            for($i=0; $i<$shopcartnum; $i++){
                 unset($shops);
                 unset($shopsdata);
                 unset($shopcartid);
-                //这里
-                $shops = $shopcart->where(['id',$data["shopcartid"][$i]])->find();
-                $shopsdata = [
+                $shops =$shopcart->where('id',$data['shopcartid'][$i])->find();
+                $shopsdata=[
                     "product_id" => $shops->product_id,
                     "out_trade_no" => $shopno,
                     "merchant_id" => $shops->merchant_id,
@@ -214,20 +208,19 @@ class Order extends Base
                     "buy_count" => $shops->buy_count,
                     "attributes" => $shops->attributes,
                 ];
-                $shopcartid = OrderformModel::creat($shopsdata);
-                if($shopcartid)
-                {
-                    ShopcartModel::destroy($shopsdata);
+                $shopcartid = OrderformModel::create($shopsdata);
+                if($shopcartid){
+                    ShopcartModel::destroy($data['shopcartid'][$i]);
                 }else{
                     return false;
                 }
-            if($shopcartid){
+            }
+            if(!$shopcartid){
                 return false;
             }else{
-                echo "购买成功";
+                echo '写入成功';
             }
-           }
-
-      }
+        }
     }
+
 }

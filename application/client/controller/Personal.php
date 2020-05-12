@@ -219,6 +219,7 @@ class Personal extends Base
       $registerid=session('clientid','','client');
       $orderform= new OrderformModel;
       $order=$orderform->getorder($registerid);
+//      dump($order);exit();
       $this->assign('order',$order);
       return $this->fetch(); 
     }
@@ -342,6 +343,45 @@ class Personal extends Base
         $this->assign('collections',$collections);
         $this->assign('products',$products);
          return $this->fetch();
-      }                 
+      }
+    /**
+     * 评论区
+     * @param
+     */
+    public function commentcontent($pid,$orderid,$clientid)
+    {
+//        dump($pid);商品id
+//        dump($orderid);订单id
+//        dump($clientid);客户id
+        $this->assign('productid',$pid);
+        $this->assign('orderid',$orderid);
+        $this->assign('clientid',$clientid);
+        return $this->fetch();
+    }
+    //商品评价的保存
+    public function commentsave()
+    {
+        $data = input('param.');
+//        dump($data["content"]);exit();
+        //实例化评论
+        $comment = new CommentModel;
+        //实例化订单
+        $order = new OrderformModel;
+       $commentdata = [
+          'product_id'=>$data['productid'],
+            'orderform_id'=>$data['orderid'],
+            'client_id'=>$data['clientid'],
+           'content'=>$data["content"],
+                'status'=>1
+        ];
+        $res = $comment->save($commentdata);
+        if ($res){
+            $order->where('id',$data['orderid'])->update(['comment_status'=>1]);
+            $this->success("评论成功",'comment');
+        }else{
+            $this->error("评论失败");
+        }
+
+    }
        
 }
